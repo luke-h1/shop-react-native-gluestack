@@ -3,7 +3,7 @@ import { z, ZodError } from "zod";
 import pick from "lodash/pick";
 
 export default function validate(schema: z.ZodObject<any, any>) {
-  return (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
     try {
       schema.parse(req.body);
       req.cleanBody = pick(req.body, Object.keys(schema.shape));
@@ -14,12 +14,13 @@ export default function validate(schema: z.ZodObject<any, any>) {
           message: `${issue.path.join(".")} is ${issue.message}`,
         }));
 
-        return res
+        res
           .status(400)
           .json({ error: "Invalid request body", problems: errorMessages });
       } else {
-        return res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ error: "Internal server error" });
       }
+      next();
     }
   };
 }
