@@ -2,9 +2,9 @@ import express from "express";
 import { eq } from "drizzle-orm";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import validate from "../../middleware/validation";
-import { createUserSchema, loginSchema, usersTable } from "../../db/schema";
-import { db } from "../../db";
+import validate from "../middleware/validation";
+import { createUserSchema, loginSchema, usersTable } from "../db/schema";
+import { db } from "../db";
 
 export interface User {
   role: string;
@@ -73,3 +73,5 @@ router.post("/login", validate(loginSchema), async (req, res) => {
     });
   }
 });
+
+export default router;
