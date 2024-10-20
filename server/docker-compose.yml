@@ -1,0 +1,15 @@
+services:
+  postgres:
+    container_name: pg-ecom
+    image: "postgres:latest"
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: pg
+      POSTGRES_DB: pg
+    volumes:
+      - .dbdata:/var/lib/postgres
+    expose:
+      - 5432
