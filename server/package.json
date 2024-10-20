@@ -26,6 +26,7 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/lodash": "^4.17.10",
+    "@types/node": "^22.7.7",
     "@types/pg": "^8.11.10",
     "drizzle-kit": "^0.25.0",
     "ts-node-dev": "^2.0.0",
